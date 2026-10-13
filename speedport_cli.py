@@ -31,6 +31,7 @@ from typing import Any, Awaitable, Callable, NoReturn
 
 from speedport import Speedport
 
+__version__ = "0.1.0"
 DEFAULT_IP = "192.168.2.1"
 
 # Probed via the generic Connection.get(); the lib implements none of these.
@@ -322,6 +323,7 @@ assert not _missing and not _extra, (
 
 def build_parser() -> tuple[argparse.ArgumentParser, dict[str, str]]:
     parser = argparse.ArgumentParser(description="Speedport Router Management CLI")
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     parser.add_argument("--ip", default=DEFAULT_IP, help=f"Router IP (default: {DEFAULT_IP})")
     parser.add_argument("--password", default=os.environ.get("SPEEDPORT_PASSWORD"),
                         help="Router login password (or set SPEEDPORT_PASSWORD env var)")
